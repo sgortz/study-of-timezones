@@ -1,0 +1,87 @@
+* {
+  font-family: "Open Sans", sans-serif;
+  text-align: center;
+}
+
+header {
+  margin: 10px;
+}
+
+h1 {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 23px;
+}
+
+section {
+  margin: 20px 20px;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+footer {
+  text-align: right;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.card {
+  margin: 40px, 40px, 0;
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+}
+
+.main-icon {
+  font-size: 150px;
+  color: #ffd66b;
+  /* margin: 0 auto;
+  display: inline-block;
+  text-align: center; */
+}
+
+.fa-stream {
+  transform: rotate(-90deg);
+}
+.temperature-display {
+  font-size: 90px;
+  margin: auto;
+  display: inline;
+  padding: 0;
+  position: relative;
+  left: 30px;
+  top: -4px;
+}
+
+.temperature-display .active {
+  color: black;
+  cursor: default;
+}
+
+.temperature-display .active:hover {
+  text-decoration: none;
+}
+
+.temperature-unit {
+  font-size: 20px;
+  text-align: left;
+  position: relative;
+  top: -49px;
+}
+
+.weather {
+  margin: 0;
+  font-size: 30px;
+  text-transform: capitalize;
+}
+
+#city-input {
+  text-align: left;
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Bootstrap-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <!--CSS Link-->
+    <link rel="stylesheet" href="src/style.css" />
+    <!--Font Awesome icons-->
+    <script
+      src="https://kit.fontawesome.com/9d8e8e4082.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster+Two&family=Open+Sans:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <!--Axios Import-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card mt-5 shadow">
+        <div class="card-body">
+          <nav>
+            <form id="form-city">
+              <input
+                type="text"
+                placeholder="Type city here"
+                id="city-input"
+                autocomplete="off"
+              />
+              <input type="submit" value="Search" id="search-button" />
+              <input type="submit" value="Current City" id="current-button" />
+            </form>
+          </nav>
+
+          <header>
+            <h1>Rio de Janeiro, RJ</h1>
+
+            <h2>Thur, Jan 28, 16:02</h2>
+
+            <p class="weather">
+              <img
+                src="http://openweathermap.org/img/wn/10d@2x.png"
+                alt="weather icon"
+                class="float-left"
+                id="weather-icon"
+              />
+              <span class="float-left" id="weather-description">Snow</span>
+            </p>
+
+            <div class="temperature-display">
+              <span id="temperature">99</span
+              ><small class="temperature-unit"
+                ><a href="#" id="temperature-celsius" class="active">˚C</a> |
+                <a href="#" id="temperature-fahrenheit">˚F</a></small
+              >
+            </div>
+          </header>
+        </div>
+      </div>
+      <footer>
+        <i class="fab fa-github"></i>
+        <a
+          href="https://github.com/sgortz/shecodes-plus-project"
+          target="_blank"
+          >Open-source code</a
+        >
+        by Sabrina Gortz
+      </footer>
+    </div>
+    <script src="src/script.js"></script>
+  </body>
+</html>
