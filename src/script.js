@@ -52,6 +52,8 @@ function getForecast(response) {
 
   console.log(humanDateFormat);
 
+  smallHeading.innerHTML = `${weekday}, ${month} ${dateMonth}, ${humanDateFormat}`;
+
   let apiIconResponse = response.data.current.weather[0].icon;
   let weatherIcon = document.querySelector("#weather-icon");
   weatherIcon.setAttribute(
