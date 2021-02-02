@@ -24,39 +24,6 @@ let monthName = [
   "December",
 ];
 
-let forecast = [
-  "Clear",
-  "Smoke",
-  "Clouds",
-  "Haze",
-  "Mist",
-  "Fog",
-  "Drizzle",
-  "Rain",
-  "Snow",
-  "Ash",
-  "Dust",
-  "Sand",
-  "Thunderstorm",
-  "Tornado",
-  "Squall",
-];
-
-let colors = [
-  //clear sky daylight
-  "linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)",
-  //clear sky nighttime -- font color whitesmoke
-  "linear-gradient(to top, #09203f 0%, #537895 100%)",
-  //rainy or cloudy
-  "linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)",
-  //sand, Dust
-  "linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);",
-  //thunderstorm
-  "linear-gradient(to left, #BDBBBE 0%, #9D9EA3 100%), radial-gradient(88% 271%, rgba(255, 255, 255, 0.25) 0%, rgba(254, 254, 254, 0.25) 1%, rgba(0, 0, 0, 0.25) 100%), radial-gradient(50% 100%, rgba(255, 255, 255, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%)",
-  // Morning
-  "linear-gradient(to top, #a8edea 0%, #fed6e3 100%)",
-];
-
 let now = new Date();
 let weekday = days[now.getDay()];
 let dateMonth = now.getDate();
@@ -72,21 +39,18 @@ let smallHeading = document.querySelector("h2");
 smallHeading.innerHTML = `${weekday}, ${month} ${dateMonth}, ${hour}:${minutes}`;
 
 function getForecast(response) {
-  let unixTimestamp = response.data.current.dt * 1000;
+  let unixTimestamp = response.data.current.dt;
   let timezoneOffset = response.data.timezone_offset;
-
-  console.log(unixTimestamp);
-  console.log(response.data.timezone_offset);
-
   let localUnixTimestamp = unixTimestamp + timezoneOffset;
+  let millisecondsTime = localUnixTimestamp * 1000;
 
-  console.log(localUnixTimestamp);
+  console.log(millisecondsTime);
 
-  let now = new Date(localUnixTimestamp);
+  let dateElement = new Date(millisecondsTime);
 
-  let humanLocalTime = now.toLocaleTimeString();
+  let humanDateFormat = dateElement.toLocaleTimeString();
 
-  console.log(humanLocalTime);
+  console.log(humanDateFormat);
 
   let apiIconResponse = response.data.current.weather[0].icon;
   let weatherIcon = document.querySelector("#weather-icon");
@@ -118,8 +82,6 @@ function getCityCoords(response) {
 
   let forecastapiKey = "87ea285fd528486819f9be1f3ac61b1d";
   let forecastapiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${cityLatitude}&lon=${cityLongitude}&exclude=minutely,hourly&units=metric&appid=${forecastapiKey}`;
-
-  console.log(forecastapiUrl);
 
   axios.get(forecastapiUrl).then(getForecast);
 }
