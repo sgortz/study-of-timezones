@@ -72,9 +72,24 @@ let smallHeading = document.querySelector("h2");
 smallHeading.innerHTML = `${weekday}, ${month} ${dateMonth}, ${hour}:${minutes}`;
 
 function getForecast(response) {
-  console.log(response);
   let apiWeatherResponse = response.data.current.weather[0].main;
   let apiIconResponse = response.data.current.weather[0].icon;
+
+  let unixTimestamp = response.data.current.dt * 1000;
+  let timezoneOffset = response.data.timezone_offset;
+
+  console.log(unixTimestamp);
+  console.log(response.data.timezone_offset);
+
+  let localUnixTimestamp = unixTimestamp + timezoneOffset;
+
+  console.log(localUnixTimestamp);
+
+  let now = new Date(localUnixTimestamp);
+
+  let humanLocalTime = now.toLocaleTimeString();
+
+  console.log(humanLocalTime);
 
   let weatherIcon = document.querySelector("#weather-icon");
   weatherIcon.setAttribute(
@@ -125,6 +140,8 @@ function getCityCoords(response) {
 
   let forecastapiKey = "87ea285fd528486819f9be1f3ac61b1d";
   let forecastapiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${cityLatitude}&lon=${cityLongitude}&exclude=minutely,hourly&units=metric&appid=${forecastapiKey}`;
+
+  console.log(forecastapiUrl);
 
   axios.get(forecastapiUrl).then(getForecast);
 }
@@ -202,4 +219,4 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
 let celsiusLink = document.querySelector("#temperature-celsius");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
-search("Bemidji");
+search("New york");
