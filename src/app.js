@@ -1,11 +1,9 @@
-let unix_timestamp = 1612204032;
+const unixTimestamp = 1575909015;
 
-let newDate = new Date(unix_timestamp * 1000);
+const milliseconds = 1612289428000 - 21600000;
 
-let hours = date.getHours();
+const dateObject = new Date(milliseconds);
 
-let minutes = "0" + date.getMinutes();
+const humanDateFormat = dateObject.toLocaleString();
 
-let formattedTime = hours + ":" + minutes.substr(-2);
-
-console.log(formattedTime);
+console.log(humanDateFormat);

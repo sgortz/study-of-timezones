@@ -72,9 +72,6 @@ let smallHeading = document.querySelector("h2");
 smallHeading.innerHTML = `${weekday}, ${month} ${dateMonth}, ${hour}:${minutes}`;
 
 function getForecast(response) {
-  let apiWeatherResponse = response.data.current.weather[0].main;
-  let apiIconResponse = response.data.current.weather[0].icon;
-
   let unixTimestamp = response.data.current.dt * 1000;
   let timezoneOffset = response.data.timezone_offset;
 
@@ -91,6 +88,7 @@ function getForecast(response) {
 
   console.log(humanLocalTime);
 
+  let apiIconResponse = response.data.current.weather[0].icon;
   let weatherIcon = document.querySelector("#weather-icon");
   weatherIcon.setAttribute(
     "src",
@@ -100,26 +98,6 @@ function getForecast(response) {
     "alt",
     `${response.data.current.weather[0].description}`
   );
-  let colorBackground = document.querySelector(".card");
-  if (apiIconResponse.includes("n")) {
-    colorBackground.style.backgroundImage = colors[1];
-    colorBackground.style.color = "whitesmoke";
-  } else if (apiWeatherResponse === forecast[0] && hour < 12) {
-    colorBackground.style.backgroundImage = colors[5];
-    colorBackground.style.color = "black";
-  } else if (apiWeatherResponse === forecast[0] && hour >= 12) {
-    colorBackground.style.backgroundImage = colors[0];
-    colorBackground.style.color = "black";
-  } else if (apiWeatherResponse === forecast[(10, 11)]) {
-    colorBackground.style.backgroundImage = colors[3];
-    colorBackground.style.color = "black";
-  } else if (apiWeatherResponse === forecast[(12, 13)]) {
-    colorBackground.style.backgroundImage = colors[4];
-    colorBackground.style.color = "black";
-  } else {
-    colorBackground.style.backgroundImage = colors[2];
-    colorBackground.style.color = "black";
-  }
 
   document.querySelector("#weather-description").innerHTML =
     response.data.current.weather[0].description;
@@ -186,37 +164,10 @@ function handleCurrentButton(event) {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
-function displayFahrenheitTemp(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  let fahrenheitTemperature = (celsiusMainTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-}
-
-function displayCelsiusTemperature(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(celsiusMainTemperature);
-
-  fahrenheitLink.classList.remove("active");
-  celsiusLink.classList.add("active");
-}
-
 let searchButton = document.querySelector("#search-button");
 searchButton.addEventListener("click", handleSearch);
 
 let currentButton = document.querySelector("#current-button");
 currentButton.addEventListener("click", handleCurrentButton);
-
-let celsiusMainTemperature = null;
-
-let fahrenheitLink = document.querySelector("#temperature-fahrenheit");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
-
-let celsiusLink = document.querySelector("#temperature-celsius");
-celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("New york");
